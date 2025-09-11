@@ -1,103 +1,128 @@
-import Image from "next/image";
+'use client'
+
+import { AnimatedCard } from '@/components/animations/AnimatedCard'
+import { Rotating3DBox } from '@/components/animations/Rotating3DBox'
+import { motion } from 'framer-motion'
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen p-8">
+      <motion.header 
+        className="text-center mb-12"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h1 
+          className="text-5xl font-bold mb-4"
+          style={{ color: 'var(--primary-600)' }}
+        >
+          Curte Animation Site
+        </h1>
+        <p 
+          className="text-xl"
+          style={{ color: 'var(--text-secondary)' }}
+        >
+          Next.js + TypeScript + Advanced Animations
+        </p>
+      </motion.header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <div className="max-w-7xl mx-auto">
+        <section className="mb-16">
+          <motion.h2 
+            className="text-3xl font-semibold mb-8 text-center"
+            style={{ color: 'var(--secondary-600)' }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Animation Showcase
+          </motion.h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <AnimatedCard delay={0.1} className="hover:shadow-xl">
+              <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--accent-600)' }}>
+                Framer Motion
+              </h3>
+              <p style={{ color: 'var(--text-secondary)' }}>
+                Smooth, declarative animations with React components
+              </p>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.2} className="hover:shadow-xl">
+              <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--accent-600)' }}>
+                GSAP Integration
+              </h3>
+              <p style={{ color: 'var(--text-secondary)' }}>
+                Professional-grade animation library for complex sequences
+              </p>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.3} className="hover:shadow-xl">
+              <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--accent-600)' }}>
+                Lottie Files
+              </h3>
+              <p style={{ color: 'var(--text-secondary)' }}>
+                Vector animations exported from After Effects
+              </p>
+            </AnimatedCard>
+          </div>
+        </section>
+
+        <section className="mb-16">
+          <motion.h2 
+            className="text-3xl font-semibold mb-8 text-center"
+            style={{ color: 'var(--secondary-600)' }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+            3D Graphics Demo
+          </motion.h2>
+          
+          <div className="rounded-lg overflow-hidden shadow-2xl" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+            <Rotating3DBox height="500px" />
+          </div>
+        </section>
+
+        <motion.section 
+          className="text-center py-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <h2 className="text-2xl font-semibold mb-4" style={{ color: 'var(--primary-700)' }}>
+            Ready to Build Amazing Animations
+          </h2>
+          <p className="mb-6" style={{ color: 'var(--text-secondary)' }}>
+            This project is configured with all the tools you need for creating stunning visual experiences
+          </p>
+          <div className="flex gap-4 justify-center">
+            <motion.button
+              className="px-8 py-3 rounded-full font-semibold text-white"
+              style={{ backgroundColor: 'var(--primary-600)' }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get Started
+            </motion.button>
+            <motion.a
+              href="/game"
+              className="px-8 py-3 rounded-full font-semibold text-white inline-block"
+              style={{ 
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              🎮 Play Color Cascade
+            </motion.a>
+          </div>
+        </motion.section>
+      </div>
     </div>
-  );
+  )
 }
