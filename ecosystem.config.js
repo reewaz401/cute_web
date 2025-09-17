@@ -1,18 +1,12 @@
 module.exports = {
   apps: [{
-    name: 'for-melissa-a',
-    script: 'node_modules/next/dist/bin/next',
+    name: 'formelissa-website',
+    script: './node_modules/.bin/next',
     args: 'start',
-    cwd: '/var/www/formelissa.world/',
-    instances: 'max',
-    exec_mode: 'cluster',
-    autorestart: true,
-    watch: false,
-    max_memory_restart: '1G',
+    cwd: '/var/www/cute_web',
+    instances: 1,
+    exec_mode: 'fork',
     env: {
-      NODE_ENV: 'development'
-    },
-    env_production: {
       NODE_ENV: 'production',
       PORT: 3000
     },
@@ -22,3 +16,5 @@ module.exports = {
     time: true
   }]
 };
+
+
