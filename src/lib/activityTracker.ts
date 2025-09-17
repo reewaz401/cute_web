@@ -1,7 +1,5 @@
 'use client'
 
-import { v4 as uuidv4 } from 'uuid'
-
 interface ActivityData {
   sessionId: string
   page: string
@@ -34,7 +32,7 @@ class ActivityTracker {
     let sessionId = sessionStorage.getItem('siteSessionId')
 
     if (!sessionId) {
-      sessionId = uuidv4()
+      sessionId = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2) + Date.now().toString(36)
       sessionStorage.setItem('siteSessionId', sessionId)
     }
 
