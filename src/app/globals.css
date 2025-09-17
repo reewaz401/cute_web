@@ -48,3 +48,63 @@ body {
   color: var(--text-primary);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom Lamb Cursor */
+html {
+  cursor: url('/cursors/lamb-cursor.svg') 16 17, auto;
+}
+
+/* All elements use lamb cursor by default */
+* {
+  cursor: url('/cursors/lamb-cursor.svg') 16 17, auto;
+}
+
+/* Pointer cursor for interactive elements */
+a,
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+label[for],
+.cursor-pointer,
+[onclick],
+a[href],
+button:not(:disabled),
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: url('/cursors/lamb-pointer.svg') 8 24, pointer !important;
+}
+
+/* Hover effect for clickable elements - lamb gets excited */
+a:hover,
+button:hover,
+[role="button"]:hover {
+  cursor: url('/cursors/lamb-pointer.svg') 8 24, pointer !important;
+}
+
+/* Text cursor for input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea,
+[contenteditable="true"] {
+  cursor: text;
+}
+
+/* Disabled cursor */
+[disabled],
+.disabled,
+button:disabled {
+  cursor: not-allowed !important;
+}
+
+/* Loading cursor */
+.loading,
+[aria-busy="true"] {
+  cursor: wait !important;
+}
