@@ -17,8 +17,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Curte Animation Studio",
+  title: "For you",
   description: "Interactive animations and graphics showcase",
+  icons: {
+    icon: '/fav.png',
+    shortcut: '/fav.png',
+    apple: '/fav.png',
+  },
 };
 
 export default function RootLayout({

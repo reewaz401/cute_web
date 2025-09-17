@@ -36,7 +36,7 @@ export default function GalleryPage() {
               <div className={`
                 h-64 bg-gradient-to-br
                 ${index % 4 === 0 ? 'from-purple-400 to-pink-400' : ''}
-                ${index % 4 === 1 ? 'from-blue-400 to-cyan-400' : ''}
+                ${index % 4 === 1 ? 'from-pink-400 to-rose-400' : ''}
                 ${index % 4 === 2 ? 'from-green-400 to-teal-400' : ''}
                 ${index % 4 === 3 ? 'from-orange-400 to-red-400' : ''}
               `} />

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function DashboardPage() {
   const stats = [
-    { label: 'Total Views', value: '24.5K', change: '+12.5%', color: 'from-blue-400 to-blue-600' },
+    { label: 'Total Views', value: '24.5K', change: '+12.5%', color: 'from-pink-400 to-pink-600' },
     { label: 'Active Users', value: '1,234', change: '+5.2%', color: 'from-green-400 to-green-600' },
     { label: 'Animations', value: '48', change: '+8', color: 'from-purple-400 to-purple-600' },
     { label: 'Performance', value: '98%', change: '+2.1%', color: 'from-orange-400 to-orange-600' },
