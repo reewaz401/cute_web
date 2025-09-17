@@ -74,3 +74,16 @@ model CSiteTimepassWebsites {
   @@index([isActive])
   @@map("c_site_timepass_websites")
 }
+
+// Home Line - Dynamic messages for the homepage
+model CHomeLine {
+  id          String   @id @default(cuid())
+  message     String   @db.Text // The message to display
+  isActive    Boolean  @default(true) // Whether this message is currently active
+  priority    Int      @default(0) // Higher priority messages are shown first
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isActive, priority])
+  @@map("c_home_line")
+}
