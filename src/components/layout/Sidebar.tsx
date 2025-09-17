@@ -11,7 +11,7 @@ import {
 interface NavItem {
   name: string
   href: string
-  icon: React.ComponentType<any>
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
 }
 
 const navigation: NavItem[] = [
@@ -117,8 +117,8 @@ export default function Sidebar() {
                 >
                   🏠
                 </motion.div>
-                <p className="text-xs text-gray-600 font-bold">Cat's Home</p>
-                <p className="text-xs text-gray-500 mt-1">Cozy & Warm</p>
+                <p className="text-xs text-gray-600 font-bold">Cat&apos;s Home</p>
+                <p className="text-xs text-gray-500 mt-1">Cozy &amp; Warm</p>
               </div>
             </div>
           </motion.div>

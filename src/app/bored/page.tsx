@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 import JumpingCat from '@/components/animations/JumpingCat'
 
 export default function BoredPage() {
@@ -62,7 +61,7 @@ export default function BoredPage() {
           className="text-2xl text-gray-700 mb-12"
         >
           <span className="font-semibold">For today:</span>
-          <p className="italic mt-2">If you were a vegetable, you'd be a cute-cumber</p>
+          <p className="italic mt-2">If you were a vegetable, you&apos;d be a cute-cumber</p>
           <p className="text-sm text-gray-500 mt-3 font-normal">
             I will update time to time be sure to check please
           </p>

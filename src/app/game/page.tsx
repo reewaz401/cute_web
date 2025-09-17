@@ -28,7 +28,7 @@ export default function ColorCascadeGame() {
   const [particles, setParticles] = useState<Array<{id: number, x: number, y: number}>>([])
   
   const gameAreaRef = useRef<HTMLDivElement>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | null>(null)
   const ballIdRef = useRef(0)
   const lastSpawnRef = useRef(0)
   const keysPressed = useRef<Set<string>>(new Set())
