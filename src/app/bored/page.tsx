@@ -1,22 +1,66 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import JumpingCat from '@/components/animations/JumpingCat'
 
 export default function BoredPage() {
+  const [lineOfDay, setLineOfDay] = useState({
+    line: "If you were a vegetable, you'd be a cute-cumber",
+    createdDate: new Date().toISOString()
+  })
 
-  const quizzes = [
-    { name: 'Sporcle', url: 'https://www.sporcle.com', description: 'Trivia quizzes on thousands of topics' },
+  // Default fallback websites
+  const defaultWebsites = [
     { name: 'JetPunk', url: 'https://www.jetpunk.com', description: 'User-created quizzes and trivia' },
-    { name: 'Mental Floss Quizzes', url: 'https://www.mentalfloss.com/quizzes', description: 'Fun and educational quizzes' },
-    { name: 'BuzzFeed Quizzes', url: 'https://www.buzzfeed.com/quizzes', description: 'Personality and fun quizzes' },
-    { name: 'Kahoot', url: 'https://kahoot.com', description: 'Interactive learning games' },
-  ]
-
-  const timepassWebsites = [
     { name: 'Little Alchemy', url: 'https://littlealchemy.com', description: 'Combine elements to discover new items' },
     { name: 'GeoGuessr', url: 'https://www.geoguessr.com', description: 'Guess where in the world you are' },
+    { name: 'Quick, Draw!', url: 'https://quickdraw.withgoogle.com', description: 'Can a neural network learn to recognize doodling?' },
+    { name: 'Window Swap', url: 'https://www.window-swap.com', description: "See the view from someone else's window" }
   ]
+
+  const [websites, setWebsites] = useState<Array<{
+    name: string
+    url: string
+    description: string | null
+  }>>(defaultWebsites)
+
+  // Fetch the latest line of the day and websites
+  useEffect(() => {
+    const fetchLineOfDay = async () => {
+      try {
+        const response = await fetch('/api/line-of-day')
+        if (response.ok) {
+          const data = await response.json()
+          setLineOfDay(data)
+        }
+      } catch (error) {
+        console.error('Failed to fetch line of the day:', error)
+      }
+    }
+
+    const fetchWebsites = async () => {
+      try {
+        const response = await fetch('/api/timepass-websites')
+        if (response.ok) {
+          const data = await response.json()
+          // Only update if we got data, otherwise keep defaults
+          if (data && data.length > 0) {
+            setWebsites(data)
+          }
+        } else {
+          // On error, keep the default websites
+          console.log('Using default websites due to fetch error')
+        }
+      } catch (error) {
+        console.error('Failed to fetch websites, using defaults:', error)
+        // Keep default websites on error
+      }
+    }
+
+    fetchLineOfDay()
+    fetchWebsites()
+  }, [])
 
 
   return (
@@ -61,70 +105,48 @@ export default function BoredPage() {
           className="text-2xl text-gray-700 mb-12"
         >
           <span className="font-semibold">For today:</span>
-          <p className="italic mt-2">If you were a vegetable, you&apos;d be a cute-cumber</p>
+          <p className="italic mt-2">{lineOfDay.line}</p>
           <p className="text-sm text-gray-500 mt-3 font-normal">
             I will update time to time be sure to check please
           </p>
         </motion.div>
 
-        {/* Table of Quizzes and Timepass Websites */}
+        {/* Timepass Websites - Single unified list */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="mt-16 w-full max-w-6xl mx-auto"
+          className="mt-16 w-full max-w-4xl mx-auto"
         >
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-2">
-              {/* Quizzes Column */}
-              <div className="border-r border-gray-200">
-                <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-4">
-                  <h2 className="text-2xl font-bold text-center">Quizzes</h2>
-                </div>
-                <div className="p-4 space-y-3">
-                  {quizzes.map((quiz, index) => (
-                    <motion.a
-                      key={index}
-                      href={quiz.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block p-3 rounded-lg hover:bg-purple-50 transition-colors"
-                      whileHover={{ x: 5 }}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.6 + index * 0.1 }}
-                    >
-                      <h3 className="font-semibold text-purple-700">{quiz.name}</h3>
-                      <p className="text-sm text-gray-600">{quiz.description}</p>
-                    </motion.a>
-                  ))}
-                </div>
-              </div>
-
-              {/* Timepass Websites Column */}
-              <div>
-                <div className="bg-gradient-to-r from-pink-500 to-pink-600 text-white p-4">
-                  <h2 className="text-2xl font-bold text-center">Timepass Websites</h2>
-                </div>
-                <div className="p-4 space-y-3">
-                  {timepassWebsites.map((site, index) => (
+            <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-6">
+              <h2 className="text-3xl font-bold text-center">Timepass Websites</h2>
+            </div>
+            <div className="p-6">
+              {websites.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {websites.map((site, index) => (
                     <motion.a
                       key={index}
                       href={site.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block p-3 rounded-lg hover:bg-pink-50 transition-colors"
-                      whileHover={{ x: 5 }}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.6 + index * 0.1 }}
+                      className="block p-4 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 transition-all border border-purple-200"
+                      whileHover={{ scale: 1.02, x: 2 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 * index }}
                     >
-                      <h3 className="font-semibold text-pink-700">{site.name}</h3>
-                      <p className="text-sm text-gray-600">{site.description}</p>
+                      <h3 className="font-bold text-lg text-purple-700 mb-1">{site.name}</h3>
+                      {site.description && (
+                        <p className="text-sm text-gray-600">{site.description}</p>
+                      )}
                     </motion.a>
                   ))}
                 </div>
-              </div>
+              ) : (
+                <p className="text-center text-gray-500 py-8">No websites available yet. Check back later!</p>
+              )}
             </div>
           </div>
         </motion.div>

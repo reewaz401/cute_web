@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Simplified Site Activity Tracking
+
+// Main activity log - tracks user visits and time spent
+model CSiteActivityLog {
+  id              String   @id @default(cuid())
+  sessionId       String   // Unique session identifier
+
+  // Page Information
+  page            String   // Current page URL/path
+  pageTitle       String?  // Title of the page
+
+  // Time Tracking
+  loginTime       DateTime @default(now()) // When user accessed the site/page
+  timeOnPage      Int?     // Time spent on page in seconds
+  exitTime        DateTime? // When they left
+
+  // Device & Location (denormalized for simpler queries)
+  ip              String?  // IP address
+  country         String?  // Country name
+  countryCode     String?  // Country code (US, UK, etc.)
+  city            String?  // City name
+  device          String?  // mobile, tablet, desktop
+  browser         String?  // Chrome, Firefox, Safari, etc.
+  os              String?  // Windows, macOS, iOS, Android, etc.
+
+  // User Interactions
+  openedJokeBot   Boolean  @default(false) // Did they open the joke bot?
+  jokeBotOpenTime DateTime? // When they opened the joke bot
+
+  createdAt       DateTime @default(now())
+
+  @@index([sessionId])
+  @@index([loginTime])
+  @@index([ip])
+  @@index([openedJokeBot])
+  @@map("c_site_activity_log")
+}
+
+// Line of the Day - Daily quotes/lines
+model CSiteLineOfDay {
+  line        String   @db.Text // The line/quote text
+  isActive    Boolean  @default(true) // Whether this line is active
+  createdDate DateTime @default(now()) @id // When this line was created (also serves as unique identifier)
+
+  @@index([createdDate])
+  @@index([isActive])
+  @@map("c_site_line_of_day")
+}
+
+// Timepass Websites - Fun websites for users
+model CSiteTimepassWebsites {
+  name        String   // Website name
+  url         String   // Website URL
+  description String?  // Brief description
+  isActive    Boolean  @default(true) // Whether this website is active
+  createdDate DateTime @default(now()) @id // When this was added
+
+  @@index([createdDate])
+  @@index([isActive])
+  @@map("c_site_timepass_websites")
+}

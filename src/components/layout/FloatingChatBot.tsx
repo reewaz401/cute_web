@@ -5,12 +5,42 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 export default function FloatingChatBot() {
   const [isOpen, setIsOpen] = useState(false)
+  const [hasTrackedOpen, setHasTrackedOpen] = useState(false)
+
+  const handleToggle = async () => {
+    const newIsOpen = !isOpen
+    setIsOpen(newIsOpen)
+
+    // Track when joke bot is opened for the first time in this session
+    if (newIsOpen && !hasTrackedOpen) {
+      setHasTrackedOpen(true)
+
+      try {
+        // Get session ID from sessionStorage
+        const sessionId = sessionStorage.getItem('siteSessionId')
+        if (sessionId) {
+          await fetch('/api/activity/jokebot', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              sessionId,
+              page: window.location.pathname
+            })
+          })
+        }
+      } catch (error) {
+        console.error('Failed to track joke bot interaction:', error)
+      }
+    }
+  }
 
   return (
     <>
       {/* Floating Chat Button */}
       <motion.button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggle}
         className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg flex items-center justify-center text-white z-50 hover:scale-110 transition-transform"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}

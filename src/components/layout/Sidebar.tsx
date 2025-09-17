@@ -94,33 +94,41 @@ export default function Sidebar() {
         </nav>
 
         <div className="p-4 border-t border-neutral-200">
+          {/* Cat Instructions */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="mb-4 p-3 bg-orange-100 border border-orange-300 rounded-lg"
+          >
+            <p className="text-xs text-orange-800 font-medium text-center">
+              Click the cat to jump! Hold for higher jumps. Click on the cat's left/right side to jump in that direction.
+            </p>
+          </motion.div>
+
           {/* Cat Home */}
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.7, type: "spring" }}
-            className="mt-4 relative"
+            className="relative text-center"
             id="cat-home"
           >
-            <div className="bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg p-6 border-2 border-orange-300 shadow-inner">
-              <div className="text-center">
-                <motion.div
-                  animate={{
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="text-4xl mb-2"
-                >
-                  🏠
-                </motion.div>
-                <p className="text-xs text-gray-600 font-bold">Cat&apos;s Home</p>
-                <p className="text-xs text-gray-500 mt-1">Cozy &amp; Warm</p>
-              </div>
-            </div>
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="text-4xl mb-2"
+            >
+              🏠
+            </motion.div>
+            <p className="text-xs text-gray-600 font-bold">Cat&apos;s Home</p>
+            <p className="text-xs text-gray-500 mt-1">Cozy &amp; Warm</p>
           </motion.div>
         </div>
       </div>

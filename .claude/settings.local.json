@@ -7,7 +7,10 @@
       "Bash(tasklist)",
       "Bash(findstr:*)",
       "Bash(taskkill:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(npx prisma:*)",
+      "Bash(node:*)",
+      "Bash(PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION=\"yes\" npx prisma db push --force-reset)"
     ],
     "deny": [],
     "ask": []

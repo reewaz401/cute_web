@@ -10,13 +10,20 @@ export default function JumpingCat() {
   const [isAtHome, setIsAtHome] = useState(false)
   const [showMessage, setShowMessage] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
+  const [isCharging, setIsCharging] = useState(false)
+  const [chargeLevel, setChargeLevel] = useState(0)
+  const [enjoyMessage, setEnjoyMessage] = useState('')
   const controls = useAnimation()
   const positionRef = useRef({ x: 50, y: 90 })
   const velocityRef = useRef({ x: 0, y: 0 })
+  const pressStartTime = useRef<number | null>(null)
+  const chargeInterval = useRef<NodeJS.Timeout | null>(null)
 
   // Physics constants
   const GRAVITY = 0.3
-  const JUMP_FORCE = -8
+  const MIN_JUMP_FORCE = -5 // Minimum jump force for a quick tap
+  const MAX_JUMP_FORCE = -12 // Maximum jump force for a long hold
+  const CHARGE_TIME = 1000 // Max charge time in milliseconds
   const GROUND_LEVEL = 90 // percentage from top (moved down so cat can reach bottom)
   const CEILING_LEVEL = 5 // percentage from top
   const DAMPING = 0.5 // Bounce damping factor
@@ -44,8 +51,8 @@ export default function JumpingCat() {
       const catX = (position.x / 100) * windowWidth
       const catY = (position.y / 100) * windowHeight
 
-      // Check if cat overlaps with cat home (with some tolerance)
-      const tolerance = 50 // pixels
+      // Check if cat overlaps with cat home (with minimal tolerance)
+      const tolerance = 5 // pixels - very small tolerance for precise collision
       if (catX >= catHomeRect.left - tolerance &&
           catX <= catHomeRect.right + tolerance &&
           catY >= catHomeRect.top - tolerance &&
@@ -76,6 +83,39 @@ export default function JumpingCat() {
 
     checkHome()
   }, [position, isAtHome, isHidden])
+
+  // Random enjoy messages
+  useEffect(() => {
+    const messages = ['I\'m enjoying! 😊', 'Wheee! 🎉', 'This is fun! ✨', 'So happy! 💕']
+
+    const showRandomMessage = () => {
+      // Only show message if cat is visible and not at home
+      if (!isHidden && !isAtHome) {
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)]
+        setEnjoyMessage(randomMessage)
+
+        // Hide message after 2 seconds
+        setTimeout(() => {
+          setEnjoyMessage('')
+        }, 2000)
+      }
+    }
+
+    // Show message every 8-12 seconds
+    const interval = setInterval(() => {
+      showRandomMessage()
+    }, 8000 + Math.random() * 4000) // 8-12 seconds
+
+    // Show first message after 3 seconds
+    const initialTimeout = setTimeout(() => {
+      showRandomMessage()
+    }, 3000)
+
+    return () => {
+      clearInterval(interval)
+      clearTimeout(initialTimeout)
+    }
+  }, [isHidden, isAtHome])
 
   // Physics update loop
   useEffect(() => {
@@ -127,12 +167,43 @@ export default function JumpingCat() {
     return () => clearInterval(interval)
   }, []) // Empty dependency array - only run once
 
-  const handleJump = (e: React.MouseEvent | React.TouchEvent) => {
+  const handlePressStart = (e: React.MouseEvent | React.TouchEvent) => {
     e.stopPropagation()
     e.preventDefault()
 
-    // Only jump if on the ground
+    // Only start charging if on the ground
     if (position.y >= GROUND_LEVEL - 5 && !isJumping) {
+      pressStartTime.current = Date.now()
+      setIsCharging(true)
+      setChargeLevel(0)
+
+      // Start charge animation
+      chargeInterval.current = setInterval(() => {
+        const elapsed = Date.now() - (pressStartTime.current || Date.now())
+        const charge = Math.min(elapsed / CHARGE_TIME, 1)
+        setChargeLevel(charge)
+      }, 30)
+    }
+  }
+
+  const handlePressEnd = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation()
+    e.preventDefault()
+
+    // Clear charge interval
+    if (chargeInterval.current) {
+      clearInterval(chargeInterval.current)
+      chargeInterval.current = null
+    }
+
+    // Only jump if we were charging
+    if (position.y >= GROUND_LEVEL - 5 && !isJumping && pressStartTime.current) {
+      const pressDuration = Date.now() - pressStartTime.current
+      const chargePercent = Math.min(pressDuration / CHARGE_TIME, 1)
+
+      // Calculate jump force based on charge
+      const jumpForce = MIN_JUMP_FORCE + (MAX_JUMP_FORCE - MIN_JUMP_FORCE) * chargePercent
+
       let jumpDirection = 0
 
       // Determine jump direction based on click/touch position
@@ -145,10 +216,10 @@ export default function JumpingCat() {
         // Three zones: left (0-0.35), middle (0.35-0.65), right (0.65-1)
         if (relativeX < 0.35) {
           // Clicked on left side - jump right
-          jumpDirection = 4
+          jumpDirection = 1.5 + chargePercent * 2.5 // Start with smaller base value
         } else if (relativeX > 0.65) {
           // Clicked on right side - jump left
-          jumpDirection = -4
+          jumpDirection = -(1.5 + chargePercent * 2.5)
         } else {
           // Clicked in middle - jump straight up with tiny random movement
           jumpDirection = (Math.random() - 0.5) * 0.5
@@ -157,14 +228,18 @@ export default function JumpingCat() {
 
       setVelocity({
         x: jumpDirection,
-        y: JUMP_FORCE
+        y: jumpForce
       })
       setIsJumping(true)
+      setIsCharging(false)
+      setChargeLevel(0)
+      pressStartTime.current = null
 
-      // Animate cat rotation during jump
+      // Animate cat rotation during jump (more rotations for higher jumps)
+      const rotations = chargePercent > 0.5 ? [0, 360, 720] : [0, 360]
       controls.start({
-        rotate: jumpDirection === 0 ? [0, 180, 360] : [0, 360],
-        transition: { duration: 0.8 }
+        rotate: rotations,
+        transition: { duration: 0.8 + chargePercent * 0.4 }
       })
     }
   }
@@ -173,8 +248,11 @@ export default function JumpingCat() {
     <div className="fixed inset-0 z-30 pointer-events-none">
       <motion.div
         animate={controls}
-        onClick={handleJump}
-        onTouchStart={handleJump}
+        onMouseDown={handlePressStart}
+        onMouseUp={handlePressEnd}
+        onMouseLeave={handlePressEnd}
+        onTouchStart={handlePressStart}
+        onTouchEnd={handlePressEnd}
         style={{
           position: 'absolute',
           left: `${position.x}%`,
@@ -302,6 +380,42 @@ export default function JumpingCat() {
             </motion.div>
           </motion.div>
 
+          {/* Charge indicator */}
+          {isCharging && chargeLevel > 0 && (
+            <motion.div
+              className="absolute -bottom-8 left-1/2 transform -translate-x-1/2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {/* Charge bar background */}
+              <div className="w-20 h-2 bg-gray-300 rounded-full overflow-hidden">
+                {/* Charge bar fill */}
+                <motion.div
+                  className="h-full bg-gradient-to-r from-yellow-400 to-orange-500"
+                  style={{
+                    width: `${chargeLevel * 100}%`,
+                  }}
+                />
+              </div>
+              {/* Power particles */}
+              {chargeLevel > 0.5 && (
+                <motion.div
+                  className="absolute inset-0 flex justify-center items-center"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    repeat: Infinity
+                  }}
+                >
+                  <div className="text-xs">⚡</div>
+                </motion.div>
+              )}
+            </motion.div>
+          )}
+
           {/* Jump effect particles */}
           {isJumping && (
             <>
@@ -347,12 +461,45 @@ export default function JumpingCat() {
         </motion.div>
       )}
 
+      {/* Random enjoy message */}
+      {enjoyMessage && !isHidden && !isAtHome && (
+        <motion.div
+          key={enjoyMessage} // Key ensures new animation on each message
+          initial={{ scale: 0, opacity: 0, rotate: -10 }}
+          animate={{ scale: 1, opacity: 1, rotate: 0 }}
+          exit={{ scale: 0, opacity: 0 }}
+          className="absolute z-40 pointer-events-none"
+          style={{
+            left: `${position.x}%`,
+            top: `${position.y - 15}%`,
+            transform: 'translateX(-50%)'
+          }}
+        >
+          <motion.div
+            animate={{
+              y: [0, -5, 0],
+            }}
+            transition={{
+              duration: 1,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="bg-gradient-to-r from-pink-100 to-purple-100 px-3 py-1.5 rounded-full shadow-lg border-2 border-pink-300 relative"
+          >
+            <p className="text-sm font-bold text-purple-700 whitespace-nowrap">
+              {enjoyMessage}
+            </p>
+            <div className="absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-pink-100" />
+          </motion.div>
+        </motion.div>
+      )}
+
       {/* Instructions or waiting message */}
       <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-center pointer-events-none">
         <p className="text-sm text-gray-500 bg-white bg-opacity-80 px-4 py-2 rounded-full">
           {isHidden
             ? "Cat is resting at home... Coming back soon! 😴"
-            : "Click: Left side → jump right | Middle → jump up | Right side → jump left"
+            : "Hold to charge jump! Left/Right side for direction"
           }
         </p>
       </div>
