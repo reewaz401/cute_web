@@ -4,37 +4,30 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 export default function HomeLine() {
-  const [message, setMessage] = useState<string>('I hope you are doing good today :D')
-  const [isLoading, setIsLoading] = useState(true)
+  const [showText, setShowText] = useState(true)
 
   useEffect(() => {
-    const fetchHomeLine = async () => {
-      try {
-        const response = await fetch('/api/home-line')
-        if (response.ok) {
-          const data = await response.json()
-          setMessage(data.message)
-        }
-      } catch (error) {
-        console.error('Error fetching home line:', error)
-        // Keep default message on error
-      } finally {
-        setIsLoading(false)
-      }
-    }
+    // Hide text after 4.8 seconds (when congratulations text appears)
+    const timer = setTimeout(() => {
+      setShowText(false)
+    }, 4800)
 
-    fetchHomeLine()
+    return () => clearTimeout(timer)
   }, [])
+
+  if (!showText) {
+    return null
+  }
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="text-center py-8"
     >
       <motion.p
-        key={message}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -44,11 +37,7 @@ export default function HomeLine() {
           lineHeight: '1.6'
         }}
       >
-        {isLoading ? (
-          <span className="inline-block animate-pulse">Loading...</span>
-        ) : (
-          message
-        )}
+        <span className="inline-block animate-pulse">Wait for it...</span>
       </motion.p>
     </motion.div>
   )

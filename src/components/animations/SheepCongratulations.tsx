@@ -5,8 +5,24 @@ import { useEffect, useState } from 'react'
 
 export default function SheepCongratulations() {
   const [showText, setShowText] = useState(false)
+  const [congratsText, setCongratsText] = useState('CONGRATULATIONS')
 
   useEffect(() => {
+    // Fetch congratulations text from API
+    const fetchCongratsText = async () => {
+      try {
+        const response = await fetch('/api/congratulations')
+        if (response.ok) {
+          const data = await response.json()
+          setCongratsText(data.text)
+        }
+      } catch (error) {
+        console.error('Error fetching congratulations text:', error)
+      }
+    }
+
+    fetchCongratsText()
+
     // Show text when sheep reaches middle (after ~4.8s based on animation timing)
     // The sheep animation takes 4.8s to move in
     const timer = setTimeout(() => {
@@ -17,10 +33,10 @@ export default function SheepCongratulations() {
   }, [])
 
   return (
-    <div className="relative w-full h-[500px] overflow-hidden">
+    <div className="relative w-full h-[500px] overflow-visible">
       {/* Congratulations text - starts behind sheep (z-10) and moves up */}
       <motion.div
-        className="absolute left-1/2 top-1/2 transform -translate-x-1/2 z-10"
+        className="absolute left-1/2 top-1/2 transform -translate-x-1/2 z-10 w-full px-4 text-center"
         initial={{
           opacity: 0,
           y: 100,
@@ -40,9 +56,9 @@ export default function SheepCongratulations() {
           damping: 15
         }}
       >
-        <h1 className="text-6xl md:text-8xl font-bold">
-          <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent">
-            CONGRATULATIONS
+        <h1 className="text-2xl md:text-4xl font-bold whitespace-nowrap">
+          <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent inline-block">
+            {congratsText}
           </span>
         </h1>
 

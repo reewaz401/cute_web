@@ -5,10 +5,6 @@ import { useState, useEffect } from 'react'
 import JumpingCat from '@/components/animations/JumpingCat'
 
 export default function BoredPage() {
-  const [lineOfDay, setLineOfDay] = useState({
-    line: "If you were a vegetable, you'd be a cute-cumber",
-    createdDate: new Date().toISOString()
-  })
 
   // Default fallback websites
   const defaultWebsites = [
@@ -27,17 +23,6 @@ export default function BoredPage() {
 
   // Fetch the latest line of the day and websites
   useEffect(() => {
-    const fetchLineOfDay = async () => {
-      try {
-        const response = await fetch('/api/line-of-day')
-        if (response.ok) {
-          const data = await response.json()
-          setLineOfDay(data)
-        }
-      } catch (error) {
-        console.error('Failed to fetch line of the day:', error)
-      }
-    }
 
     const fetchWebsites = async () => {
       try {
@@ -58,7 +43,6 @@ export default function BoredPage() {
       }
     }
 
-    fetchLineOfDay()
     fetchWebsites()
   }, [])
 
@@ -98,18 +82,6 @@ export default function BoredPage() {
           Let's find something fun for you to do! 🐑
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-2xl text-gray-700 mb-12"
-        >
-          <span className="font-semibold">For today:</span>
-          <p className="italic mt-2">{lineOfDay.line}</p>
-          <p className="text-sm text-gray-500 mt-3 font-normal">
-            I will update time to time be sure to check please
-          </p>
-        </motion.div>
 
         {/* Timepass Websites - Single unified list */}
         <motion.div
