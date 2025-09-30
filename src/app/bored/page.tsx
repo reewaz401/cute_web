@@ -48,7 +48,7 @@ export default function BoredPage() {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-8 relative">
+    <div className="min-h-screen flex items-center justify-center p-4 md:p-8 relative">
       {/* Interactive Jumping Cat */}
       <JumpingCat />
       <motion.div
@@ -58,7 +58,7 @@ export default function BoredPage() {
         className="max-w-2xl w-full text-center"
       >
         <motion.h1
-          className="text-6xl font-bold mb-8"
+          className="text-4xl md:text-6xl font-bold mb-6 md:mb-8"
           animate={{
             rotate: [0, -5, 5, -5, 0],
           }}
@@ -77,7 +77,7 @@ export default function BoredPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-xl text-gray-600 mb-12"
+          className="text-lg md:text-xl text-gray-600 mb-8 md:mb-12 px-4"
         >
           Let's find something fun for you to do! 🐑
         </motion.p>
@@ -92,18 +92,18 @@ export default function BoredPage() {
         >
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
             <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-6">
-              <h2 className="text-3xl font-bold text-center">Timepass Websites</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-center">Timepass Websites</h2>
             </div>
-            <div className="p-6">
+            <div className="p-4 md:p-6">
               {websites.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                   {websites.map((site, index) => (
                     <motion.a
                       key={index}
                       href={site.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block p-4 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 transition-all border border-purple-200"
+                      className="block p-3 md:p-4 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 transition-all border border-purple-200"
                       whileHover={{ scale: 1.02, x: 2 }}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}

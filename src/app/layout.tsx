@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "../styles/colors.css";
 import Sidebar from "@/components/layout/Sidebar";
+import MobileNav from "@/components/layout/MobileNav";
 // import FloatingChatBot from "@/components/layout/FloatingChatBot";
 import { ActivityTrackerProvider } from "@/components/providers/ActivityTrackerProvider";
 
@@ -26,6 +27,14 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#ffffff',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,8 +47,18 @@ export default function RootLayout({
       >
         <ActivityTrackerProvider>
           <div className="flex min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100">
-            <Sidebar />
-            <main className="flex-1 overflow-auto">
+            {/* Desktop Sidebar */}
+            <div className="hidden md:block">
+              <Sidebar />
+            </div>
+
+            {/* Mobile Navigation */}
+            <div className="md:hidden">
+              <MobileNav />
+            </div>
+
+            {/* Main Content */}
+            <main className="flex-1 overflow-auto pt-16 md:pt-0">
               {children}
             </main>
             {/* <FloatingChatBot /> */}

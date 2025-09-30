@@ -2,10 +2,12 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 export default function SheepCongratulations() {
   const [showText, setShowText] = useState(false)
   const [congratsText, setCongratsText] = useState('CONGRATULATIONS')
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     // Fetch congratulations text from API
@@ -33,7 +35,7 @@ export default function SheepCongratulations() {
   }, [])
 
   return (
-    <div className="relative w-full h-[500px] overflow-visible">
+    <div className="relative w-full h-[400px] md:h-[500px] overflow-visible">
       {/* Congratulations text - starts behind sheep (z-10) and moves up */}
       <motion.div
         className="absolute left-1/2 top-1/2 transform -translate-x-1/2 z-10 w-full px-4 text-center"
@@ -56,7 +58,7 @@ export default function SheepCongratulations() {
           damping: 15
         }}
       >
-        <h1 className="text-2xl md:text-4xl font-bold whitespace-nowrap">
+        <h1 className="text-xl sm:text-2xl md:text-4xl font-bold">
           <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent inline-block">
             {congratsText}
           </span>
@@ -69,12 +71,12 @@ export default function SheepCongratulations() {
           animate={showText ? { opacity: 1 } : {}}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <span className="text-3xl">✨ 🎉 ✨</span>
+          <span className="text-2xl md:text-3xl">✨ 🎉 ✨</span>
         </motion.div>
 
         {/* Subtitle */}
         <motion.p
-          className="text-center mt-4 text-xl text-gray-600"
+          className="text-center mt-4 text-lg md:text-xl text-gray-600"
           initial={{ opacity: 0, y: 20 }}
           animate={showText ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1, duration: 0.5 }}
@@ -118,16 +120,16 @@ export default function SheepCongratulations() {
         className="absolute inset-0 w-full h-full border-0 z-20 pointer-events-none"
         style={{
           background: 'transparent',
-          transform: 'scale(1.5)',
+          transform: isMobile ? 'scale(1.2)' : 'scale(1.5)',
           transformOrigin: 'center bottom'
         }}
         title="Sheep Animation"
       />
 
-      {/* Confetti particles */}
+      {/* Confetti particles - reduced for mobile */}
       {showText && (
         <>
-          {[...Array(12)].map((_, i) => (
+          {[...Array(isMobile ? 6 : 12)].map((_, i) => (
             <motion.div
               key={`confetti-${i}`}
               className={`absolute w-3 h-3 ${

@@ -40,7 +40,8 @@ export default function JumpingCat() {
   // Check if cat is at home
   useEffect(() => {
     const checkHome = () => {
-      const catHome = document.getElementById('cat-home')
+      // Check for both desktop and mobile cat home elements
+      const catHome = document.getElementById('cat-home') || document.getElementById('mobile-cat-home')
       if (!catHome || isHidden) return
 
       const catHomeRect = catHome.getBoundingClientRect()
@@ -495,11 +496,11 @@ export default function JumpingCat() {
       )}
 
       {/* Instructions or waiting message */}
-      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-center pointer-events-none">
-        <p className="text-sm text-gray-500 bg-white bg-opacity-80 px-4 py-2 rounded-full">
+      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-center pointer-events-none px-4 w-full max-w-sm">
+        <p className="text-xs md:text-sm text-gray-500 bg-white bg-opacity-80 px-3 md:px-4 py-1.5 md:py-2 rounded-full">
           {isHidden
             ? "Cat is resting at home... Coming back soon! 😴"
-            : "Hold to charge jump! Left/Right side for direction"
+            : "Hold to charge jump! Tap left/right for direction"
           }
         </p>
       </div>
