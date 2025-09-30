@@ -1,0 +1,27 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pumpkin body -->
+  <ellipse cx="16" cy="18" rx="11" ry="10" fill="#FF6B35" stroke="#D35400" stroke-width="1.5"/>
+
+  <!-- Pumpkin ridges -->
+  <path d="M8 18 Q10 10, 10 26" fill="none" stroke="#E55100" stroke-width="1" opacity="0.6"/>
+  <path d="M12 18 Q14 10, 14 26" fill="none" stroke="#E55100" stroke-width="1" opacity="0.6"/>
+  <path d="M18 18 Q20 10, 20 26" fill="none" stroke="#E55100" stroke-width="1" opacity="0.6"/>
+  <path d="M22 18 Q24 10, 24 26" fill="none" stroke="#E55100" stroke-width="1" opacity="0.6"/>
+
+  <!-- Stem -->
+  <rect x="14" y="6" width="4" height="5" fill="#4A7C59" rx="1"/>
+
+  <!-- Cute face -->
+  <!-- Eyes -->
+  <circle cx="12" cy="17" r="2" fill="#2C3E50"/>
+  <circle cx="20" cy="17" r="2" fill="#2C3E50"/>
+  <circle cx="12.5" cy="16.5" r="0.5" fill="white"/>
+  <circle cx="20.5" cy="16.5" r="0.5" fill="white"/>
+
+  <!-- Cute mouth -->
+  <path d="M11 22 Q16 24, 21 22" fill="none" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Little blush -->
+  <circle cx="9" cy="20" r="1.5" fill="#FF8C42" opacity="0.5"/>
+  <circle cx="23" cy="20" r="1.5" fill="#FF8C42" opacity="0.5"/>
+</svg>

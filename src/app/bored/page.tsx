@@ -68,8 +68,8 @@ export default function BoredPage() {
             repeatDelay: 3
           }}
         >
-          <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent">
-            Feeling Bored?
+          <span className="bg-gradient-to-r from-orange-500 via-purple-600 to-orange-500 bg-clip-text text-transparent">
+            Need Some Spooks?
           </span>
         </motion.h1>
 
@@ -77,9 +77,9 @@ export default function BoredPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-lg md:text-xl text-gray-600 mb-8 md:mb-12 px-4"
+          className="text-lg md:text-xl text-orange-300 mb-8 md:mb-12 px-4"
         >
-          Let's find something fun for you to do! 🐑
+          Let's find something spooky for you to do! 🎃
         </motion.p>
 
 
@@ -90,9 +90,9 @@ export default function BoredPage() {
           transition={{ delay: 0.5, duration: 0.5 }}
           className="mt-16 w-full max-w-4xl mx-auto"
         >
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-            <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-6">
-              <h2 className="text-2xl md:text-3xl font-bold text-center">Timepass Websites</h2>
+          <div className="bg-gradient-to-b from-purple-950/90 to-black/90 rounded-2xl shadow-xl shadow-purple-900/50 overflow-hidden border border-orange-600/30 backdrop-blur-sm">
+            <div className="bg-gradient-to-r from-orange-600 to-purple-700 text-white p-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-center">🕸️ Spooky Websites 🕸️</h2>
             </div>
             <div className="p-4 md:p-6">
               {websites.length > 0 ? (
@@ -103,21 +103,21 @@ export default function BoredPage() {
                       href={site.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block p-3 md:p-4 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 transition-all border border-purple-200"
+                      className="block p-3 md:p-4 rounded-lg bg-gradient-to-r from-orange-900/30 to-purple-900/30 hover:from-orange-800/40 hover:to-purple-800/40 transition-all border border-orange-500/30 backdrop-blur-sm"
                       whileHover={{ scale: 1.02, x: 2 }}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 * index }}
                     >
-                      <h3 className="font-bold text-lg text-purple-700 mb-1">{site.name}</h3>
+                      <h3 className="font-bold text-lg text-orange-400 mb-1">{site.name}</h3>
                       {site.description && (
-                        <p className="text-sm text-gray-600">{site.description}</p>
+                        <p className="text-sm text-orange-200/70">{site.description}</p>
                       )}
                     </motion.a>
                   ))}
                 </div>
               ) : (
-                <p className="text-center text-gray-500 py-8">No websites available yet. Check back later!</p>
+                <p className="text-center text-orange-300/70 py-8">No spooky websites available yet. Check back later! 👻</p>
               )}
             </div>
           </div>

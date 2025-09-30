@@ -1,0 +1,101 @@
+/* Theme-aware styles */
+
+/* Normal Theme */
+body.theme-normal {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body.theme-normal .sidebar-bg {
+  @apply bg-white border-neutral-200;
+}
+
+body.theme-normal .sidebar-header-border {
+  @apply border-neutral-200;
+}
+
+body.theme-normal .sidebar-title {
+  @apply bg-gradient-to-r from-primary-600 to-secondary-600;
+}
+
+body.theme-normal .nav-active {
+  @apply text-primary-700 bg-primary-50;
+}
+
+body.theme-normal .nav-inactive {
+  @apply text-neutral-600 hover:text-primary-600 hover:bg-neutral-50;
+}
+
+body.theme-normal .nav-active-bg {
+  @apply bg-gradient-to-r from-primary-100 to-secondary-100;
+}
+
+body.theme-normal .nav-active-dot {
+  @apply bg-primary-600;
+}
+
+body.theme-normal .main-bg {
+  @apply bg-gradient-to-br from-neutral-50 to-neutral-100;
+}
+
+/* Halloween Theme */
+body.theme-halloween {
+  background: var(--halloween-bg-gradient);
+  color: var(--halloween-ghost);
+}
+
+body.theme-halloween .sidebar-bg {
+  @apply bg-gradient-to-b from-purple-950 to-black border-orange-600/30;
+}
+
+body.theme-halloween .sidebar-header-border {
+  @apply border-orange-600/30;
+}
+
+body.theme-halloween .sidebar-title {
+  @apply bg-gradient-to-r from-orange-500 to-purple-600;
+}
+
+body.theme-halloween .nav-active {
+  @apply text-orange-300 bg-purple-900/50;
+}
+
+body.theme-halloween .nav-inactive {
+  @apply text-orange-100 hover:text-orange-300 hover:bg-purple-900/30;
+}
+
+body.theme-halloween .nav-active-bg {
+  @apply bg-gradient-to-r from-orange-900/30 to-purple-900/30;
+}
+
+body.theme-halloween .nav-active-dot {
+  @apply bg-orange-500 animate-pulse;
+}
+
+body.theme-halloween .main-bg {
+  @apply bg-gradient-to-br from-purple-950 via-black to-orange-950;
+}
+
+body.theme-halloween .mobile-header-bg {
+  @apply bg-gradient-to-r from-purple-950 to-black border-orange-600/30 shadow-lg shadow-purple-900/50;
+}
+
+body.theme-normal .mobile-header-bg {
+  @apply bg-white border-neutral-200 shadow-sm;
+}
+
+body.theme-halloween .cat-instructions-bg {
+  @apply bg-purple-900/50 border-orange-500/50;
+}
+
+body.theme-normal .cat-instructions-bg {
+  @apply bg-orange-100 border-orange-300;
+}
+
+body.theme-halloween .cat-instructions-text {
+  @apply text-orange-300;
+}
+
+body.theme-normal .cat-instructions-text {
+  @apply text-orange-800;
+}

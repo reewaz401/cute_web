@@ -1,7 +1,5 @@
 @import "tailwindcss";
 @import "../styles/colors.css";
-@import "../styles/halloween-colors.css";
-@import "../styles/theme-switch.css";
 
 @theme inline {
   --color-primary-50: var(--primary-50);
@@ -15,7 +13,7 @@
   --color-primary-800: var(--primary-800);
   --color-primary-900: var(--primary-900);
   --color-primary-950: var(--primary-950);
-
+  
   --color-secondary-50: var(--secondary-50);
   --color-secondary-100: var(--secondary-100);
   --color-secondary-200: var(--secondary-200);
@@ -27,7 +25,7 @@
   --color-secondary-800: var(--secondary-800);
   --color-secondary-900: var(--secondary-900);
   --color-secondary-950: var(--secondary-950);
-
+  
   --color-accent-50: var(--accent-50);
   --color-accent-100: var(--accent-100);
   --color-accent-200: var(--accent-200);
@@ -38,7 +36,7 @@
   --color-accent-700: var(--accent-700);
   --color-accent-800: var(--accent-800);
   --color-accent-900: var(--accent-900);
-
+  
   --color-background: var(--bg-primary);
   --color-foreground: var(--text-primary);
   --font-sans: var(--font-geist-sans);
@@ -46,56 +44,47 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  min-height: 100vh;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-/* Normal Theme Styles */
-body.theme-normal {
   background: var(--bg-primary);
   color: var(--text-primary);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Halloween Theme Styles */
-body.theme-halloween {
-  background: var(--halloween-bg-gradient);
-  color: var(--halloween-ghost);
-}
-
-/* Normal Theme Cursors */
-body.theme-normal,
-body.theme-normal * {
+/* Custom Lamb Cursor */
+html {
   cursor: url('/cursors/lamb-cursor.svg') 16 17, auto;
 }
 
-body.theme-normal a,
-body.theme-normal button,
-body.theme-normal [role="button"],
-body.theme-normal input[type="button"],
-body.theme-normal input[type="submit"],
-body.theme-normal input[type="reset"],
-body.theme-normal select,
-body.theme-normal label[for],
-body.theme-normal .cursor-pointer,
-body.theme-normal [onclick],
-body.theme-normal a[href],
-body.theme-normal button:not(:disabled),
-body.theme-normal input[type="checkbox"],
-body.theme-normal input[type="radio"],
-body.theme-normal a:hover,
-body.theme-normal button:hover,
-body.theme-normal [role="button"]:hover {
-  cursor: url('/cursors/lamb-pointer.svg') 8 24, pointer !important;
+/* All elements use lamb cursor by default */
+* {
+  cursor: url('/cursors/lamb-cursor.svg') 16 17, auto;
 }
 
-/* Halloween Theme Cursors - Witch Wand everywhere */
-body.theme-halloween,
-body.theme-halloween * {
+/* Pointer cursor for interactive elements */
+a,
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+label[for],
+.cursor-pointer,
+[onclick],
+a[href],
+button:not(:disabled),
+input[type="checkbox"],
+input[type="radio"] {
   cursor: url('/cursors/witch-wand-pointer.svg') 26 14, pointer !important;
 }
 
-/* Text cursor for input fields (both themes) */
+/* Hover effect for clickable elements - lamb gets excited */
+a:hover,
+button:hover,
+[role="button"]:hover {
+  cursor: url('/cursors/witch-wand-pointer.svg') 26 14, pointer !important;
+}
+
+/* Text cursor for input fields */
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -104,7 +93,7 @@ input[type="tel"],
 input[type="url"],
 textarea,
 [contenteditable="true"] {
-  cursor: text !important;
+  cursor: text;
 }
 
 /* Disabled cursor */
@@ -123,10 +112,6 @@ button:disabled {
 /* Mobile-specific styles */
 @media (max-width: 768px) {
   /* Disable custom cursor on mobile */
-  body.theme-normal,
-  body.theme-normal *,
-  body.theme-halloween,
-  body.theme-halloween *,
   html,
   *,
   a,

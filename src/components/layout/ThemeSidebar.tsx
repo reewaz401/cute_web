@@ -7,6 +7,7 @@ import {
   HomeIcon,
   SparklesIcon
 } from '@heroicons/react/24/outline'
+import { CURRENT_THEME, getThemeConfig } from '@/config/theme'
 
 interface NavItem {
   name: string
@@ -19,25 +20,40 @@ const navigation: NavItem[] = [
   { name: 'Bored ?', href: '/bored', icon: SparklesIcon },
 ]
 
-export default function Sidebar() {
+export default function ThemeSidebar() {
   const pathname = usePathname()
+  const themeConfig = getThemeConfig()
+  const isHalloween = CURRENT_THEME === 'halloween'
 
   return (
     <motion.aside
       initial={{ x: -300 }}
       animate={{ x: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className="w-64 bg-white shadow-xl border-r border-neutral-200"
+      className={`w-64 shadow-xl ${isHalloween ? 'sidebar-bg' : 'sidebar-bg'}`}
     >
       <div className="h-full flex flex-col">
-        <div className="p-6 border-b border-neutral-200">
+        <div className={`p-6 relative overflow-hidden ${isHalloween ? 'sidebar-header-border' : 'sidebar-header-border'}`}>
+          {/* Halloween decorations */}
+          {isHalloween && (
+            <>
+              <div className="absolute top-0 right-0 text-4xl opacity-30">🕸️</div>
+              <motion.div
+                className="absolute top-2 left-6 text-xl"
+                animate={{ x: [0, 10, 0], y: [0, -5, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                🦇
+              </motion.div>
+            </>
+          )}
           <motion.h2
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"
+            className={`text-2xl font-bold bg-clip-text text-transparent flex items-center gap-2 ${isHalloween ? 'sidebar-title' : 'sidebar-title'}`}
           >
-            For you
+            {isHalloween && '🎃 '}{themeConfig.siteName}
           </motion.h2>
         </div>
 
@@ -59,15 +75,15 @@ export default function Sidebar() {
                     group flex items-center px-4 py-3 text-sm font-medium rounded-lg
                     transition-all duration-200 relative overflow-hidden
                     ${isActive
-                      ? 'text-primary-700 bg-primary-50'
-                      : 'text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+                      ? isHalloween ? 'nav-active' : 'nav-active'
+                      : isHalloween ? 'nav-inactive' : 'nav-inactive'
                     }
                   `}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeNav"
-                      className="absolute inset-0 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-lg"
+                      className={`absolute inset-0 rounded-lg ${isHalloween ? 'nav-active-bg' : 'nav-active-bg'}`}
                       initial={false}
                       transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
@@ -84,7 +100,7 @@ export default function Sidebar() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", stiffness: 500 }}
-                      className="ml-auto w-2 h-2 bg-primary-600 rounded-full z-10"
+                      className={`ml-auto w-2 h-2 rounded-full z-10 ${isHalloween ? 'nav-active-dot' : 'nav-active-dot'}`}
                     />
                   )}
                 </Link>
@@ -93,16 +109,24 @@ export default function Sidebar() {
           })}
         </nav>
 
-        <div className="p-4 border-t border-neutral-200">
+        <div className={`p-4 relative ${isHalloween ? 'sidebar-header-border' : 'sidebar-header-border'}`}>
+          {/* Halloween spider web decorations */}
+          {isHalloween && (
+            <>
+              <div className="absolute top-0 left-0 text-2xl opacity-20">🕷️</div>
+              <div className="absolute bottom-0 right-0 text-2xl opacity-20 rotate-45">🕸️</div>
+            </>
+          )}
+
           {/* Cat Instructions */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="mb-4 p-3 bg-purple-900/50 border border-orange-500/50 rounded-lg backdrop-blur-sm"
+            className={`mb-4 p-3 rounded-lg ${isHalloween ? 'cat-instructions-bg backdrop-blur-sm' : 'cat-instructions-bg'}`}
           >
-            <p className="text-xs text-orange-300 font-medium text-center">
-              🧿 Click the witch cat to cast a jumping spell! Hold for more power!
+            <p className={`text-xs font-medium text-center ${isHalloween ? 'cat-instructions-text' : 'cat-instructions-text'}`}>
+              {themeConfig.catInstructions}
             </p>
           </motion.div>
 
@@ -115,9 +139,11 @@ export default function Sidebar() {
             id="cat-home"
           >
             <motion.div
-              animate={{
+              animate={isHalloween ? {
                 scale: [1, 1.1, 1],
                 rotate: [0, 5, -5, 0],
+              } : {
+                scale: [1, 1.1, 1],
               }}
               transition={{
                 duration: 2,
@@ -126,10 +152,14 @@ export default function Sidebar() {
               }}
               className="text-4xl mb-2"
             >
-              🏚️
+              {themeConfig.catHome}
             </motion.div>
-            <p className="text-xs text-orange-400 font-bold">Haunted House</p>
-            <p className="text-xs text-purple-300 mt-1">👻 Spooky &amp; Scary 👻</p>
+            <p className={`text-xs font-bold ${isHalloween ? 'text-orange-400' : 'text-gray-600'}`}>
+              {themeConfig.catHomeName}
+            </p>
+            <p className={`text-xs mt-1 ${isHalloween ? 'text-purple-300' : 'text-gray-500'}`}>
+              {themeConfig.catHomeDesc}
+            </p>
           </motion.div>
         </div>
       </div>

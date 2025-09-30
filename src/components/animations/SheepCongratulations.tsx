@@ -3,33 +3,37 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import CookingLoader from './CookingLoader'
 
 export default function SheepCongratulations() {
   const [showText, setShowText] = useState(false)
-  const [congratsText, setCongratsText] = useState('CONGRATULATIONS')
+  const [congratsText, setCongratsText] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
   const isMobile = useIsMobile()
 
   useEffect(() => {
-    // Fetch congratulations text from API
-    const fetchCongratsText = async () => {
-      try {
-        const response = await fetch('/api/congratulations')
-        if (response.ok) {
-          const data = await response.json()
-          setCongratsText(data.text)
-        }
-      } catch (error) {
-        console.error('Error fetching congratulations text:', error)
-      }
-    }
+    // Show text immediately with "Cooking..."
+    setShowText(true)
 
-    fetchCongratsText()
-
-    // Show text when sheep reaches middle (after ~4.8s based on animation timing)
-    // The sheep animation takes 4.8s to move in
+    // After 4 seconds, fetch congratulations text from API
     const timer = setTimeout(() => {
-      setShowText(true)
-    }, 4800)
+      const fetchCongratsText = async () => {
+        try {
+          const response = await fetch('/api/congratulations')
+          if (response.ok) {
+            const data = await response.json()
+            setCongratsText(data.text)
+          }
+        } catch (error) {
+          console.error('Error fetching congratulations text:', error)
+          setCongratsText('CONGRATULATIONS')
+        } finally {
+          setIsLoading(false)
+        }
+      }
+
+      fetchCongratsText()
+    }, 4000) // 4 second delay
 
     return () => clearTimeout(timer)
   }, [])
@@ -155,6 +159,9 @@ export default function SheepCongratulations() {
           ))}
         </>
       )}
+
+      {/* Cooking loader below */}
+      <CookingLoader show={isLoading} />
     </div>
   )
 }

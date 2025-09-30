@@ -1,0 +1,35 @@
+<svg width="32" height="40" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Excited jumping pumpkin -->
+  <g transform="translate(0, -3)">
+    <!-- Pumpkin body -->
+    <ellipse cx="16" cy="18" rx="12" ry="11" fill="#FF6B35" stroke="#D35400" stroke-width="1.5"/>
+
+    <!-- Pumpkin ridges -->
+    <path d="M7 18 Q9 9, 9 27" fill="none" stroke="#E55100" stroke-width="1" opacity="0.6"/>
+    <path d="M11 18 Q13 9, 13 27" fill="none" stroke="#E55100" stroke-width="1" opacity="0.6"/>
+    <path d="M19 18 Q21 9, 21 27" fill="none" stroke="#E55100" stroke-width="1" opacity="0.6"/>
+    <path d="M23 18 Q25 9, 25 27" fill="none" stroke="#E55100" stroke-width="1" opacity="0.6"/>
+
+    <!-- Stem -->
+    <rect x="14" y="5" width="4" height="5" fill="#4A7C59" rx="1"/>
+
+    <!-- Excited face -->
+    <!-- Star eyes -->
+    <path d="M12 15 L11 17 L13 17 Z" fill="#2C3E50"/>
+    <path d="M20 15 L19 17 L21 17 Z" fill="#2C3E50"/>
+
+    <!-- Big smile -->
+    <path d="M10 21 Q16 26, 22 21" fill="none" stroke="#2C3E50" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Blush -->
+    <circle cx="8" cy="20" r="2" fill="#FF8C42" opacity="0.6"/>
+    <circle cx="24" cy="20" r="2" fill="#FF8C42" opacity="0.6"/>
+
+    <!-- Sparkles -->
+    <text x="5" y="12" font-size="8" fill="#FFD700">✨</text>
+    <text x="22" y="12" font-size="8" fill="#FFD700">✨</text>
+  </g>
+
+  <!-- Pointing arrow below -->
+  <path d="M16 30 L12 36 L16 34 L20 36 Z" fill="#FF6B35" stroke="#D35400" stroke-width="1"/>
+</svg>

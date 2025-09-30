@@ -1,0 +1,61 @@
+:root {
+  /* Halloween Primary Colors */
+  --halloween-orange-50: #FFF4E6;
+  --halloween-orange-100: #FFE8CC;
+  --halloween-orange-200: #FFD199;
+  --halloween-orange-300: #FFBA66;
+  --halloween-orange-400: #FFA333;
+  --halloween-orange-500: #FF8C00;
+  --halloween-orange-600: #FF6B00;
+  --halloween-orange-700: #D35400;
+  --halloween-orange-800: #B84400;
+  --halloween-orange-900: #8B3000;
+
+  /* Halloween Purple */
+  --halloween-purple-50: #F3E5F5;
+  --halloween-purple-100: #E1BEE7;
+  --halloween-purple-200: #CE93D8;
+  --halloween-purple-300: #BA68C8;
+  --halloween-purple-400: #AB47BC;
+  --halloween-purple-500: #9C27B0;
+  --halloween-purple-600: #8E24AA;
+  --halloween-purple-700: #7B1FA2;
+  --halloween-purple-800: #6A1B9A;
+  --halloween-purple-900: #4A148C;
+
+  /* Halloween Black/Dark */
+  --halloween-dark-50: #E8E8E8;
+  --halloween-dark-100: #B8B8B8;
+  --halloween-dark-200: #888888;
+  --halloween-dark-300: #585858;
+  --halloween-dark-400: #383838;
+  --halloween-dark-500: #181818;
+  --halloween-dark-600: #151515;
+  --halloween-dark-700: #121212;
+  --halloween-dark-800: #0E0E0E;
+  --halloween-dark-900: #0A0A0A;
+
+  /* Halloween Green (Witch/Monster) */
+  --halloween-green-50: #E8F5E9;
+  --halloween-green-100: #C8E6C9;
+  --halloween-green-200: #A5D6A7;
+  --halloween-green-300: #81C784;
+  --halloween-green-400: #66BB6A;
+  --halloween-green-500: #4CAF50;
+  --halloween-green-600: #43A047;
+  --halloween-green-700: #388E3C;
+  --halloween-green-800: #2E7D32;
+  --halloween-green-900: #1B5E20;
+
+  /* Halloween Background Gradients */
+  --halloween-bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  --halloween-bg-dark: #0D0D0D;
+  --halloween-bg-medium: #1a1a2e;
+  --halloween-bg-light: #2d2d44;
+
+  /* Halloween Accent Colors */
+  --halloween-moon: #F4E04D;
+  --halloween-blood: #8B0000;
+  --halloween-ghost: rgba(255, 255, 255, 0.9);
+  --halloween-web: rgba(255, 255, 255, 0.3);
+}

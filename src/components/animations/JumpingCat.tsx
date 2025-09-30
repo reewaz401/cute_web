@@ -85,9 +85,9 @@ export default function JumpingCat() {
     checkHome()
   }, [position, isAtHome, isHidden])
 
-  // Random enjoy messages
+  // Random Halloween messages
   useEffect(() => {
-    const messages = ['I\'m enjoying! 😊', 'Wheee! 🎉', 'This is fun! ✨', 'So happy! 💕']
+    const messages = ['Boo! 👻', 'Trick or Treat! 🍬', 'Spooky fun! 🎃', 'Happy Halloween! 🦇']
 
     const showRandomMessage = () => {
       // Only show message if cat is visible and not at home
@@ -284,38 +284,47 @@ export default function JumpingCat() {
             }}
             transition={{ duration: 0.2 }}
           >
-            {/* Body */}
-            <div className="w-16 h-12 bg-orange-400 rounded-2xl relative shadow-lg">
-              {/* Stripes */}
+            {/* Body with Halloween costume */}
+            <div className="w-16 h-12 bg-black rounded-2xl relative shadow-lg">
+              {/* Orange Halloween stripes */}
               <div className="absolute inset-0 overflow-hidden rounded-2xl">
-                <div className="absolute top-2 w-full h-1.5 bg-orange-600 bg-opacity-50" />
-                <div className="absolute top-5 w-full h-1.5 bg-orange-600 bg-opacity-50" />
-                <div className="absolute top-8 w-full h-1.5 bg-orange-600 bg-opacity-50" />
+                <div className="absolute top-2 w-full h-1.5 bg-orange-500" />
+                <div className="absolute top-5 w-full h-1.5 bg-orange-500" />
+                <div className="absolute top-8 w-full h-1.5 bg-orange-500" />
               </div>
 
-              {/* Belly */}
-              <div className="absolute bottom-0 left-2 right-2 h-6 bg-orange-200 rounded-b-2xl rounded-t-lg" />
+              {/* Orange belly for Halloween */}
+              <div className="absolute bottom-0 left-2 right-2 h-6 bg-orange-500 rounded-b-2xl rounded-t-lg" />
             </div>
 
-            {/* Head */}
-            <div className="absolute -top-2 right-0 w-14 h-12 bg-orange-400 rounded-2xl shadow-lg">
-              {/* Ears */}
-              <div className="absolute -top-2 left-1 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-orange-400" />
-              <div className="absolute -top-2 right-1 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-orange-400" />
+            {/* Head with witch hat */}
+            <div className="absolute -top-2 right-0 w-14 h-12 bg-black rounded-2xl shadow-lg">
+              {/* Witch hat */}
+              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 z-10">
+                {/* Hat cone */}
+                <div className="w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-b-[25px] border-b-purple-700" />
+                {/* Hat brim */}
+                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-10 h-2 bg-purple-700 rounded-full" />
+                {/* Hat buckle */}
+                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-yellow-400 rounded-sm" />
+              </div>
+              {/* Black ears */}
+              <div className="absolute -top-2 left-1 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-black" />
+              <div className="absolute -top-2 right-1 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-black" />
 
               {/* Inner ears */}
               <div className="absolute -top-1 left-2 w-0 h-0 border-l-[3px] border-l-transparent border-r-[3px] border-r-transparent border-b-[5px] border-b-pink-300" />
               <div className="absolute -top-1 right-2 w-0 h-0 border-l-[3px] border-l-transparent border-r-[3px] border-r-transparent border-b-[5px] border-b-pink-300" />
 
-              {/* Eyes */}
+              {/* Glowing Halloween eyes */}
               <motion.div
-                className="absolute top-3 left-3 w-2 h-3 bg-black rounded-full"
+                className="absolute top-3 left-3 w-2 h-3 bg-yellow-400 rounded-full shadow-lg shadow-yellow-400/50"
                 animate={{
                   scaleY: isJumping ? 0.3 : 1
                 }}
               />
               <motion.div
-                className="absolute top-3 right-3 w-2 h-3 bg-black rounded-full"
+                className="absolute top-3 right-3 w-2 h-3 bg-yellow-400 rounded-full shadow-lg shadow-yellow-400/50"
                 animate={{
                   scaleY: isJumping ? 0.3 : 1
                 }}
@@ -340,7 +349,7 @@ export default function JumpingCat() {
               </div>
             </div>
 
-            {/* Paws */}
+            {/* Black paws with orange pads */}
             <motion.div
               animate={{
                 rotate: isJumping ? [-10, 10, -10] : 0
@@ -350,19 +359,19 @@ export default function JumpingCat() {
                 repeat: isJumping ? Infinity : 0
               }}
             >
-              <div className="absolute bottom-0 left-2 w-3 h-4 bg-orange-400 rounded-full shadow-sm" />
-              <div className="absolute bottom-0 left-6 w-3 h-4 bg-orange-400 rounded-full shadow-sm" />
-              <div className="absolute bottom-0 right-6 w-3 h-4 bg-orange-400 rounded-full shadow-sm" />
-              <div className="absolute bottom-0 right-2 w-3 h-4 bg-orange-400 rounded-full shadow-sm" />
+              <div className="absolute bottom-0 left-2 w-3 h-4 bg-black rounded-full shadow-sm" />
+              <div className="absolute bottom-0 left-6 w-3 h-4 bg-black rounded-full shadow-sm" />
+              <div className="absolute bottom-0 right-6 w-3 h-4 bg-black rounded-full shadow-sm" />
+              <div className="absolute bottom-0 right-2 w-3 h-4 bg-black rounded-full shadow-sm" />
 
-              {/* Paw pads */}
-              <div className="absolute bottom-0.5 left-2.5 w-2 h-1 bg-pink-400 rounded-full" />
-              <div className="absolute bottom-0.5 left-6.5 w-2 h-1 bg-pink-400 rounded-full" />
-              <div className="absolute bottom-0.5 right-6.5 w-2 h-1 bg-pink-400 rounded-full" />
-              <div className="absolute bottom-0.5 right-2.5 w-2 h-1 bg-pink-400 rounded-full" />
+              {/* Orange paw pads */}
+              <div className="absolute bottom-0.5 left-2.5 w-2 h-1 bg-orange-500 rounded-full" />
+              <div className="absolute bottom-0.5 left-6.5 w-2 h-1 bg-orange-500 rounded-full" />
+              <div className="absolute bottom-0.5 right-6.5 w-2 h-1 bg-orange-500 rounded-full" />
+              <div className="absolute bottom-0.5 right-2.5 w-2 h-1 bg-orange-500 rounded-full" />
             </motion.div>
 
-            {/* Tail */}
+            {/* Black tail with orange stripes */}
             <motion.div
               className="absolute top-2 -left-6 w-8 h-3"
               animate={{
@@ -374,9 +383,9 @@ export default function JumpingCat() {
               }}
               style={{ transformOrigin: 'right center' }}
             >
-              <div className="w-full h-full bg-orange-400 rounded-full">
-                <div className="absolute top-0.5 w-full h-0.5 bg-orange-600 bg-opacity-50" />
-                <div className="absolute bottom-0.5 w-full h-0.5 bg-orange-600 bg-opacity-50" />
+              <div className="w-full h-full bg-black rounded-full">
+                <div className="absolute top-0.5 w-full h-0.5 bg-orange-500" />
+                <div className="absolute bottom-0.5 w-full h-0.5 bg-orange-500" />
               </div>
             </motion.div>
           </motion.div>
@@ -455,9 +464,9 @@ export default function JumpingCat() {
             transform: 'translateX(-50%)'
           }}
         >
-          <div className="bg-white px-4 py-2 rounded-lg shadow-lg border-2 border-orange-300 relative">
-            <p className="text-sm font-bold text-gray-800 whitespace-nowrap">I am home! Will be back in 5s...</p>
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-white" />
+          <div className="bg-purple-900 px-4 py-2 rounded-lg shadow-lg border-2 border-orange-500 relative">
+            <p className="text-sm font-bold text-orange-300 whitespace-nowrap">Back to my haunted house! 🏚️</p>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-purple-900" />
           </div>
         </motion.div>
       )}
@@ -485,7 +494,7 @@ export default function JumpingCat() {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="bg-gradient-to-r from-pink-100 to-purple-100 px-3 py-1.5 rounded-full shadow-lg border-2 border-pink-300 relative"
+            className="bg-gradient-to-r from-orange-200 to-purple-200 px-3 py-1.5 rounded-full shadow-lg border-2 border-orange-400 relative"
           >
             <p className="text-sm font-bold text-purple-700 whitespace-nowrap">
               {enjoyMessage}

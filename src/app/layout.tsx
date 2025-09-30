@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "../styles/colors.css";
-import Sidebar from "@/components/layout/Sidebar";
+import ThemeSidebar from "@/components/layout/ThemeSidebar";
 import MobileNav from "@/components/layout/MobileNav";
 // import FloatingChatBot from "@/components/layout/FloatingChatBot";
 import { ActivityTrackerProvider } from "@/components/providers/ActivityTrackerProvider";
+import { CURRENT_THEME, getThemeConfig } from "@/config/theme";
+import WitchWrapper from '@/components/animations/WitchWrapper';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,8 +19,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const themeConfig = getThemeConfig();
+
 export const metadata: Metadata = {
-  title: "For you",
+  title: themeConfig.siteTitle,
   description: "Interactive animations and graphics showcase",
   icons: {
     icon: '/fav.png',
@@ -43,13 +47,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased theme-${CURRENT_THEME}`}
       >
         <ActivityTrackerProvider>
-          <div className="flex min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100">
+          <div className={`flex min-h-screen ${CURRENT_THEME === 'halloween' ? 'main-bg' : 'main-bg'}`}>
             {/* Desktop Sidebar */}
             <div className="hidden md:block">
-              <Sidebar />
+              <ThemeSidebar />
             </div>
 
             {/* Mobile Navigation */}
@@ -62,6 +66,9 @@ export default function RootLayout({
               {children}
             </main>
             {/* <FloatingChatBot /> */}
+
+            {/* Walking Witch - Halloween theme, desktop only */}
+            <WitchWrapper />
           </div>
         </ActivityTrackerProvider>
       </body>

@@ -31,20 +31,20 @@ export default function MobileNav() {
   return (
     <>
       {/* Mobile Header Bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200 shadow-sm">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-purple-950 to-black border-b border-orange-600/30 shadow-lg shadow-purple-900/50">
         <div className="flex items-center justify-between px-4 h-16">
-          <h2 className="text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-            For you
+          <h2 className="text-xl font-bold bg-gradient-to-r from-orange-500 to-purple-600 bg-clip-text text-transparent flex items-center gap-2">
+            🎃 Spooky Zone
           </h2>
           <button
             onClick={toggleMenu}
-            className="p-2 rounded-lg hover:bg-neutral-100 transition-colors"
+            className="p-2 rounded-lg hover:bg-purple-900/30 transition-colors"
             aria-label="Toggle menu"
           >
             {isOpen ? (
-              <XMarkIcon className="w-6 h-6 text-neutral-600" />
+              <XMarkIcon className="w-6 h-6 text-orange-400" />
             ) : (
-              <Bars3Icon className="w-6 h-6 text-neutral-600" />
+              <Bars3Icon className="w-6 h-6 text-orange-400" />
             )}
           </button>
         </div>
@@ -70,7 +70,7 @@ export default function MobileNav() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed right-0 top-16 bottom-0 w-72 bg-white shadow-2xl z-50 md:hidden"
+              className="fixed right-0 top-16 bottom-0 w-72 bg-gradient-to-b from-purple-950 to-black shadow-2xl shadow-purple-900/50 z-50 md:hidden border-l border-orange-600/30"
             >
               <nav className="p-4 space-y-2">
                 {navigation.map((item) => {
@@ -86,15 +86,15 @@ export default function MobileNav() {
                         flex items-center px-4 py-3 text-base font-medium rounded-lg
                         transition-all duration-200 relative
                         ${isActive
-                          ? 'text-primary-700 bg-primary-50'
-                          : 'text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+                          ? 'text-orange-300 bg-purple-900/50'
+                          : 'text-orange-100 hover:text-orange-300 hover:bg-purple-900/30'
                         }
                       `}
                     >
                       <Icon className="mr-3 h-5 w-5" />
                       <span>{item.name}</span>
                       {isActive && (
-                        <div className="ml-auto w-2 h-2 bg-primary-600 rounded-full" />
+                        <div className="ml-auto w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
                       )}
                     </Link>
                   )
@@ -102,10 +102,10 @@ export default function MobileNav() {
               </nav>
 
               {/* Cat Instructions for Mobile */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-neutral-200">
-                <div className="mb-4 p-3 bg-orange-100 border border-orange-300 rounded-lg">
-                  <p className="text-xs text-orange-800 font-medium text-center">
-                    Tap the cat to jump! Hold for higher jumps. Tap on the cat's left/right side to jump in that direction.
+              <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-orange-600/30">
+                <div className="mb-4 p-3 bg-purple-900/50 border border-orange-500/50 rounded-lg backdrop-blur-sm">
+                  <p className="text-xs text-orange-300 font-medium text-center">
+                    🧿 Tap the witch cat to cast a jumping spell! Hold for more power!
                   </p>
                 </div>
 
@@ -122,10 +122,10 @@ export default function MobileNav() {
                     }}
                     className="text-4xl mb-2"
                   >
-                    🏠
+                    🏚️
                   </motion.div>
-                  <p className="text-xs text-gray-600 font-bold">Cat&apos;s Home</p>
-                  <p className="text-xs text-gray-500 mt-1">Cozy &amp; Warm</p>
+                  <p className="text-xs text-orange-400 font-bold">Haunted House</p>
+                  <p className="text-xs text-purple-300 mt-1">👻 Spooky &amp; Scary 👻</p>
                 </div>
               </div>
             </motion.div>
