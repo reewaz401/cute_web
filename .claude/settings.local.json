@@ -15,7 +15,10 @@
       "Bash(git reset:*)",
       "Bash(git restore:*)",
       "Bash(npx tsx:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "WebSearch",
+      "Bash(npm view:*)",
+      "Bash(npm audit:*)"
     ],
     "deny": [],
     "ask": []
