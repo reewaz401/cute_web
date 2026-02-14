@@ -114,7 +114,7 @@ export default function ChristmasNewYear() {
           animate={showText ? { opacity: 1 } : {}}
           transition={{ delay: 1, duration: 0.5 }}
         >
-          <span className="text-lg md:text-xl text-yellow-300">✨ 2025 ✨</span>
+          <span className="text-lg md:text-xl text-yellow-300">✨ 2026 ✨</span>
         </motion.div>
       </motion.div>
 
