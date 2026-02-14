@@ -19,12 +19,12 @@ export async function GET() {
       return NextResponse.json({ text: homeLine.message })
     } else {
       // Default message if no active messages in database
-      return NextResponse.json({ text: "CONGRATULATIONS" })
+      return NextResponse.json({ text: "MERRY CHRISTMAS & HAPPY NEW YEAR!" })
     }
   } catch (error) {
     console.error('Error fetching congratulations text:', error)
     // Default message on error
-    return NextResponse.json({ text: "CONGRATULATIONS" })
+    return NextResponse.json({ text: "MERRY CHRISTMAS & HAPPY NEW YEAR!" })
   } finally {
     await prisma.$disconnect()
   }
