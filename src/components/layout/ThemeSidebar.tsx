@@ -23,27 +23,27 @@ const navigation: NavItem[] = [
 export default function ThemeSidebar() {
   const pathname = usePathname()
   const themeConfig = getThemeConfig()
-  const isHalloween = CURRENT_THEME === 'halloween'
+  const isChristmas = CURRENT_THEME === 'christmas'
 
   return (
     <motion.aside
       initial={{ x: -300 }}
       animate={{ x: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className={`w-64 shadow-xl ${isHalloween ? 'sidebar-bg' : 'sidebar-bg'}`}
+      className="w-64 shadow-xl sidebar-bg"
     >
       <div className="h-full flex flex-col">
-        <div className={`p-6 relative overflow-hidden ${isHalloween ? 'sidebar-header-border' : 'sidebar-header-border'}`}>
-          {/* Halloween decorations */}
-          {isHalloween && (
+        <div className="p-6 relative overflow-hidden sidebar-header-border">
+          {/* Christmas decorations */}
+          {isChristmas && (
             <>
-              <div className="absolute top-0 right-0 text-4xl opacity-30">🕸️</div>
+              <div className="absolute top-0 right-0 text-3xl opacity-40">⭐</div>
               <motion.div
                 className="absolute top-2 left-6 text-xl"
-                animate={{ x: [0, 10, 0], y: [0, -5, 0] }}
+                animate={{ y: [0, -3, 0], rotate: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                🦇
+                🎄
               </motion.div>
             </>
           )}
@@ -51,9 +51,9 @@ export default function ThemeSidebar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className={`text-2xl font-bold bg-clip-text text-transparent flex items-center gap-2 ${isHalloween ? 'sidebar-title' : 'sidebar-title'}`}
+            className="text-2xl font-bold bg-clip-text text-transparent flex items-center gap-2 sidebar-title"
           >
-            {isHalloween && '🎃 '}{themeConfig.siteName}
+            {isChristmas && '🎅 '}{themeConfig.siteName}
           </motion.h2>
         </div>
 
@@ -74,16 +74,13 @@ export default function ThemeSidebar() {
                   className={`
                     group flex items-center px-4 py-3 text-sm font-medium rounded-lg
                     transition-all duration-200 relative overflow-hidden
-                    ${isActive
-                      ? isHalloween ? 'nav-active' : 'nav-active'
-                      : isHalloween ? 'nav-inactive' : 'nav-inactive'
-                    }
+                    ${isActive ? 'nav-active' : 'nav-inactive'}
                   `}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeNav"
-                      className={`absolute inset-0 rounded-lg ${isHalloween ? 'nav-active-bg' : 'nav-active-bg'}`}
+                      className="absolute inset-0 rounded-lg nav-active-bg"
                       initial={false}
                       transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
@@ -100,7 +97,7 @@ export default function ThemeSidebar() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", stiffness: 500 }}
-                      className={`ml-auto w-2 h-2 rounded-full z-10 ${isHalloween ? 'nav-active-dot' : 'nav-active-dot'}`}
+                      className="ml-auto w-2 h-2 rounded-full z-10 nav-active-dot"
                     />
                   )}
                 </Link>
@@ -109,12 +106,12 @@ export default function ThemeSidebar() {
           })}
         </nav>
 
-        <div className={`p-4 relative ${isHalloween ? 'sidebar-header-border' : 'sidebar-header-border'}`}>
-          {/* Halloween spider web decorations */}
-          {isHalloween && (
+        <div className="p-4 relative sidebar-header-border">
+          {/* Christmas decorations */}
+          {isChristmas && (
             <>
-              <div className="absolute top-0 left-0 text-2xl opacity-20">🕷️</div>
-              <div className="absolute bottom-0 right-0 text-2xl opacity-20 rotate-45">🕸️</div>
+              <div className="absolute top-0 left-0 text-2xl opacity-20">🎁</div>
+              <div className="absolute bottom-0 right-0 text-2xl opacity-20 rotate-45">❄</div>
             </>
           )}
 
@@ -123,9 +120,9 @@ export default function ThemeSidebar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className={`mb-4 p-3 rounded-lg ${isHalloween ? 'cat-instructions-bg backdrop-blur-sm' : 'cat-instructions-bg'}`}
+            className={`mb-4 p-3 rounded-lg ${isChristmas ? 'cat-instructions-bg backdrop-blur-sm' : 'cat-instructions-bg'}`}
           >
-            <p className={`text-xs font-medium text-center ${isHalloween ? 'cat-instructions-text' : 'cat-instructions-text'}`}>
+            <p className={`text-xs font-medium text-center ${isChristmas ? 'cat-instructions-text' : 'cat-instructions-text'}`}>
               {themeConfig.catInstructions}
             </p>
           </motion.div>
@@ -139,9 +136,9 @@ export default function ThemeSidebar() {
             id="cat-home"
           >
             <motion.div
-              animate={isHalloween ? {
+              animate={isChristmas ? {
                 scale: [1, 1.1, 1],
-                rotate: [0, 5, -5, 0],
+                rotate: [0, 3, -3, 0],
               } : {
                 scale: [1, 1.1, 1],
               }}
@@ -154,10 +151,10 @@ export default function ThemeSidebar() {
             >
               {themeConfig.catHome}
             </motion.div>
-            <p className={`text-xs font-bold ${isHalloween ? 'text-orange-400' : 'text-gray-600'}`}>
+            <p className={`text-xs font-bold ${isChristmas ? 'text-red-400' : 'text-gray-600'}`}>
               {themeConfig.catHomeName}
             </p>
-            <p className={`text-xs mt-1 ${isHalloween ? 'text-purple-300' : 'text-gray-500'}`}>
+            <p className={`text-xs mt-1 ${isChristmas ? 'text-green-300' : 'text-gray-500'}`}>
               {themeConfig.catHomeDesc}
             </p>
           </motion.div>

@@ -2,11 +2,11 @@
 
 import { CURRENT_THEME } from '@/config/theme'
 import SheepCongratulations from './SheepCongratulations'
-import HalloweenGhost from './HalloweenGhost'
+import ChristmasNewYear from './ChristmasNewYear'
 
 export default function ThemeGreeting() {
-  if (CURRENT_THEME === 'halloween') {
-    return <HalloweenGhost />
+  if (CURRENT_THEME === 'christmas') {
+    return <ChristmasNewYear />
   }
   return <SheepCongratulations />
 }

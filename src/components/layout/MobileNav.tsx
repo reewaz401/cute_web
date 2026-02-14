@@ -10,6 +10,7 @@ import {
   Bars3Icon,
   XMarkIcon
 } from '@heroicons/react/24/outline'
+import { getThemeConfig } from '@/config/theme'
 
 interface NavItem {
   name: string
@@ -25,26 +26,27 @@ const navigation: NavItem[] = [
 export default function MobileNav() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
+  const themeConfig = getThemeConfig()
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
   return (
     <>
       {/* Mobile Header Bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-purple-950 to-black border-b border-orange-600/30 shadow-lg shadow-purple-900/50">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-green-950 to-red-950 border-b border-red-600/30 shadow-lg shadow-green-900/50">
         <div className="flex items-center justify-between px-4 h-16">
-          <h2 className="text-xl font-bold bg-gradient-to-r from-orange-500 to-purple-600 bg-clip-text text-transparent flex items-center gap-2">
-            🎃 Spooky Zone
+          <h2 className="text-xl font-bold bg-gradient-to-r from-red-500 to-green-500 bg-clip-text text-transparent flex items-center gap-2">
+            🎄 {themeConfig.siteName}
           </h2>
           <button
             onClick={toggleMenu}
-            className="p-2 rounded-lg hover:bg-purple-900/30 transition-colors"
+            className="p-2 rounded-lg hover:bg-green-900/30 transition-colors"
             aria-label="Toggle menu"
           >
             {isOpen ? (
-              <XMarkIcon className="w-6 h-6 text-orange-400" />
+              <XMarkIcon className="w-6 h-6 text-red-400" />
             ) : (
-              <Bars3Icon className="w-6 h-6 text-orange-400" />
+              <Bars3Icon className="w-6 h-6 text-red-400" />
             )}
           </button>
         </div>
@@ -70,7 +72,7 @@ export default function MobileNav() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed right-0 top-16 bottom-0 w-72 bg-gradient-to-b from-purple-950 to-black shadow-2xl shadow-purple-900/50 z-50 md:hidden border-l border-orange-600/30"
+              className="fixed right-0 top-16 bottom-0 w-72 bg-gradient-to-b from-green-950 to-red-950 shadow-2xl shadow-green-900/50 z-50 md:hidden border-l border-red-600/30"
             >
               <nav className="p-4 space-y-2">
                 {navigation.map((item) => {
@@ -86,15 +88,15 @@ export default function MobileNav() {
                         flex items-center px-4 py-3 text-base font-medium rounded-lg
                         transition-all duration-200 relative
                         ${isActive
-                          ? 'text-orange-300 bg-purple-900/50'
-                          : 'text-orange-100 hover:text-orange-300 hover:bg-purple-900/30'
+                          ? 'text-yellow-200 bg-red-900/50'
+                          : 'text-green-100 hover:text-yellow-200 hover:bg-green-900/30'
                         }
                       `}
                     >
                       <Icon className="mr-3 h-5 w-5" />
                       <span>{item.name}</span>
                       {isActive && (
-                        <div className="ml-auto w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+                        <div className="ml-auto w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
                       )}
                     </Link>
                   )
@@ -102,10 +104,10 @@ export default function MobileNav() {
               </nav>
 
               {/* Cat Instructions for Mobile */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-orange-600/30">
-                <div className="mb-4 p-3 bg-purple-900/50 border border-orange-500/50 rounded-lg backdrop-blur-sm">
-                  <p className="text-xs text-orange-300 font-medium text-center">
-                    🧿 Tap the witch cat to cast a jumping spell! Hold for more power!
+              <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-red-600/30">
+                <div className="mb-4 p-3 bg-green-900/50 border border-red-500/50 rounded-lg backdrop-blur-sm">
+                  <p className="text-xs text-green-200 font-medium text-center">
+                    {themeConfig.catInstructions}
                   </p>
                 </div>
 
@@ -122,10 +124,10 @@ export default function MobileNav() {
                     }}
                     className="text-4xl mb-2"
                   >
-                    🏚️
+                    {themeConfig.catHome}
                   </motion.div>
-                  <p className="text-xs text-orange-400 font-bold">Haunted House</p>
-                  <p className="text-xs text-purple-300 mt-1">👻 Spooky &amp; Scary 👻</p>
+                  <p className="text-xs text-red-400 font-bold">{themeConfig.catHomeName}</p>
+                  <p className="text-xs text-green-300 mt-1">{themeConfig.catHomeDesc}</p>
                 </div>
               </div>
             </motion.div>

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "../styles/colors.css";
-@import "../styles/halloween-colors.css";
+@import "../styles/christmas-colors.css";
 @import "../styles/theme-switch.css";
 
 @theme inline {
@@ -57,10 +57,10 @@ body.theme-normal {
   color: var(--text-primary);
 }
 
-/* Halloween Theme Styles */
-body.theme-halloween {
-  background: var(--halloween-bg-gradient);
-  color: var(--halloween-ghost);
+/* Christmas Theme Styles */
+body.theme-christmas {
+  background: var(--christmas-bg-gradient);
+  color: var(--christmas-snow);
 }
 
 /* Normal Theme Cursors */
@@ -89,10 +89,30 @@ body.theme-normal [role="button"]:hover {
   cursor: url('/cursors/lamb-pointer.svg') 8 24, pointer !important;
 }
 
-/* Halloween Theme Cursors - Witch Wand everywhere */
-body.theme-halloween,
-body.theme-halloween * {
-  cursor: url('/cursors/witch-wand-pointer.svg') 26 14, pointer !important;
+/* Christmas Theme Cursors - same lamb cursor for a friendly feel */
+body.theme-christmas,
+body.theme-christmas * {
+  cursor: url('/cursors/lamb-cursor.svg') 16 17, auto;
+}
+
+body.theme-christmas a,
+body.theme-christmas button,
+body.theme-christmas [role="button"],
+body.theme-christmas input[type="button"],
+body.theme-christmas input[type="submit"],
+body.theme-christmas input[type="reset"],
+body.theme-christmas select,
+body.theme-christmas label[for],
+body.theme-christmas .cursor-pointer,
+body.theme-christmas [onclick],
+body.theme-christmas a[href],
+body.theme-christmas button:not(:disabled),
+body.theme-christmas input[type="checkbox"],
+body.theme-christmas input[type="radio"],
+body.theme-christmas a:hover,
+body.theme-christmas button:hover,
+body.theme-christmas [role="button"]:hover {
+  cursor: url('/cursors/lamb-pointer.svg') 8 24, pointer !important;
 }
 
 /* Text cursor for input fields (both themes) */
@@ -125,8 +145,8 @@ button:disabled {
   /* Disable custom cursor on mobile */
   body.theme-normal,
   body.theme-normal *,
-  body.theme-halloween,
-  body.theme-halloween *,
+  body.theme-christmas,
+  body.theme-christmas *,
   html,
   *,
   a,

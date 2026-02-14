@@ -18,7 +18,8 @@
       "Bash(curl:*)",
       "WebSearch",
       "Bash(npm view:*)",
-      "Bash(npm audit:*)"
+      "Bash(npm audit:*)",
+      "Bash(npx next build:*)"
     ],
     "deny": [],
     "ask": []

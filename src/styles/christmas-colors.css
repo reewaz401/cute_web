@@ -1,0 +1,62 @@
+:root {
+  /* Christmas Red */
+  --christmas-red-50: #FFF5F5;
+  --christmas-red-100: #FFE0E0;
+  --christmas-red-200: #FFB3B3;
+  --christmas-red-300: #FF8080;
+  --christmas-red-400: #FF4D4D;
+  --christmas-red-500: #DC2626;
+  --christmas-red-600: #B91C1C;
+  --christmas-red-700: #991B1B;
+  --christmas-red-800: #7F1D1D;
+  --christmas-red-900: #631414;
+
+  /* Christmas Green */
+  --christmas-green-50: #F0FDF4;
+  --christmas-green-100: #DCFCE7;
+  --christmas-green-200: #BBF7D0;
+  --christmas-green-300: #86EFAC;
+  --christmas-green-400: #4ADE80;
+  --christmas-green-500: #166534;
+  --christmas-green-600: #15803D;
+  --christmas-green-700: #166534;
+  --christmas-green-800: #14532D;
+  --christmas-green-900: #0B3D1C;
+
+  /* Christmas Gold */
+  --christmas-gold-50: #FFFBEB;
+  --christmas-gold-100: #FEF3C7;
+  --christmas-gold-200: #FDE68A;
+  --christmas-gold-300: #FCD34D;
+  --christmas-gold-400: #FBBF24;
+  --christmas-gold-500: #D4A017;
+  --christmas-gold-600: #B8860B;
+  --christmas-gold-700: #92700C;
+  --christmas-gold-800: #6B5209;
+  --christmas-gold-900: #4A3806;
+
+  /* Christmas Dark (Night Sky) */
+  --christmas-dark-50: #E8EDF5;
+  --christmas-dark-100: #C5D0E6;
+  --christmas-dark-200: #9BADD0;
+  --christmas-dark-300: #6E86B5;
+  --christmas-dark-400: #4A6599;
+  --christmas-dark-500: #1E3A5F;
+  --christmas-dark-600: #162D4A;
+  --christmas-dark-700: #0F2137;
+  --christmas-dark-800: #0A1628;
+  --christmas-dark-900: #060D18;
+
+  /* Christmas Background Gradients */
+  --christmas-bg-gradient: linear-gradient(135deg, #0F2027 0%, #203A43 40%, #1B3A2D 70%, #0F2027 100%);
+  --christmas-bg-dark: #0A1628;
+  --christmas-bg-medium: #1E3A5F;
+  --christmas-bg-light: #2D4A6F;
+
+  /* Christmas Accent Colors */
+  --christmas-snow: rgba(255, 255, 255, 0.95);
+  --christmas-star: #FFD700;
+  --christmas-candy: #FF69B4;
+  --christmas-ice: rgba(173, 216, 230, 0.5);
+  --christmas-firework: #FFD700;
+}

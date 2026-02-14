@@ -3,12 +3,12 @@
 import { CURRENT_THEME } from '@/config/theme'
 import dynamic from 'next/dynamic'
 
-const WalkingWitch = dynamic(() => import('./WalkingWitch'), {
+const WalkingSanta = dynamic(() => import('./WalkingSanta'), {
   ssr: false
 })
 
 export default function WitchWrapper() {
-  if (CURRENT_THEME !== 'halloween') return null
+  if (CURRENT_THEME !== 'christmas') return null
 
-  return <WalkingWitch />
+  return <WalkingSanta />
 }

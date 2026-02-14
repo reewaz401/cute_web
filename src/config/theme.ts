@@ -1,25 +1,25 @@
 // Theme configuration
-// Change CURRENT_THEME to switch between 'halloween' and 'normal'
+// Change CURRENT_THEME to switch between 'christmas' and 'normal'
 
-export const CURRENT_THEME = 'halloween' as 'halloween' | 'normal'
+export const CURRENT_THEME = 'christmas' as 'christmas' | 'normal'
 
-export const isHalloweenTheme = () => CURRENT_THEME === 'halloween'
+export const isChristmasTheme = () => CURRENT_THEME === 'christmas'
 
 export const themeConfig = {
-  halloween: {
-    cursor: '/cursors/pumpkin-cursor.svg',
-    pointerCursor: '/cursors/witch-wand-pointer.svg',
-    siteName: '🎃 Spooky Zone',
-    siteTitle: 'Halloween Spooktacular 🎃',
-    catHome: '🏚️',
-    catHomeName: 'Haunted House',
-    catHomeDesc: '👻 Spooky & Scary 👻',
-    catInstructions: '🧙 Click the witch cat to cast a jumping spell! Hold for more power!',
-    boredTitle: 'Need Some Spooks?',
-    boredSubtitle: "Let's find something spooky for you to do! 🎃",
-    websitesTitle: '🕸️ Spooky Websites 🕸️',
-    waitingMessage: 'Cooking... 👻',
-    congratsDefault: 'HAPPY HALLOWEEN!',
+  christmas: {
+    cursor: '/cursors/lamb-cursor.svg',
+    pointerCursor: '/cursors/lamb-pointer.svg',
+    siteName: 'Merry Christmas & Happy New Year',
+    siteTitle: 'Merry Christmas & Happy New Year!',
+    catHome: '🏠',
+    catHomeName: "Santa's Cabin",
+    catHomeDesc: '🎄 Warm & Cozy 🎄',
+    catInstructions: '🎅 Click the festive cat to jump! Hold for more power! Catch some snowflakes!',
+    boredTitle: 'Holiday Fun Time!',
+    boredSubtitle: "Let's find something festive for you to do! 🎄",
+    websitesTitle: '🎄 Holiday Websites 🎄',
+    waitingMessage: 'Preparing gifts... 🎁',
+    congratsDefault: 'MERRY CHRISTMAS & HAPPY NEW YEAR!',
   },
   normal: {
     cursor: '/cursors/lamb-cursor.svg',

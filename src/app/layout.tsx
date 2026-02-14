@@ -50,7 +50,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased theme-${CURRENT_THEME}`}
       >
         <ActivityTrackerProvider>
-          <div className={`flex min-h-screen ${CURRENT_THEME === 'halloween' ? 'main-bg' : 'main-bg'}`}>
+          <div className="flex min-h-screen main-bg">
             {/* Desktop Sidebar */}
             <div className="hidden md:block">
               <ThemeSidebar />
@@ -67,7 +67,7 @@ export default function RootLayout({
             </main>
             {/* <FloatingChatBot /> */}
 
-            {/* Walking Witch - Halloween theme, desktop only */}
+            {/* Walking Santa - Christmas theme, desktop only */}
             <WitchWrapper />
           </div>
         </ActivityTrackerProvider>
